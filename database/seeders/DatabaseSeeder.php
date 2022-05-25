@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Referee;
+use App\Models\RefereeEvent;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +16,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // Call seeders
+        $this->call([
+            RoleSeeder::class,
+            ProvinceSeeder::class,
+            CitySeeder::class,
+            LevelSeeder::class,
+            UserSeeder::class,
+            RefereeSeeder::class,
+            RefereeLicenceSeeder::class,
+            RefereeEventSeeder::class,
+            GameSeeder::class,
+            ClubSeeder::class,
+        ]);
     }
 }
