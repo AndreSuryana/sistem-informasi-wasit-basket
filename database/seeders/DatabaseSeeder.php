@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             ProvinceSeeder::class,
             CitySeeder::class,
             LevelSeeder::class,
-            UserSeeder::class,
+            // UserSeeder::class,
             RefereeSeeder::class,
             RefereeLicenceSeeder::class,
             RefereeEventSeeder::class,

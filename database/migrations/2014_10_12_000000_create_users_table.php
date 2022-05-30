@@ -21,13 +21,15 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('full_name');
-            $table->string('place_of_birth');
-            $table->date('date_of_birth');
-            $table->string('phone');
-            $table->string('address');
-            $table->foreignId('city_id');
+            $table->char('gender', 1)->nullable(true);
+            $table->string('place_of_birth')->nullable(true);
+            $table->date('date_of_birth')->nullable(true);
+            $table->string('phone')->nullable(true);
+            $table->string('address')->nullable(true);
+            $table->foreignId('city_id')->nullable(true);
             $table->string('other_profession')->nullable(true);
-            $table->string('photo_path');
+            $table->string('photo_path')->nullable(true);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
