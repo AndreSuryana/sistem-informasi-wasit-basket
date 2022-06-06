@@ -35,6 +35,14 @@ $(document).ready(function() {
             });
         }
 
+        if (!/\d/.test(password)) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'Oops..',
+                text: 'Password harus terdiri dari minimal 1 angka!'
+            });
+        }
+
         // Ajax: post-login
         $.ajaxSetup({
             headers: {
@@ -50,7 +58,7 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
                 if (response.success) {
-                    window.location = '/dashboard'
+                    return window.location = '/dashboard'
                 } else {
                     return Swal.fire({
                         icon: 'error',

@@ -20,7 +20,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
+  <link rel="shortcut icon" href="{{ asset('images/basketball-icon.png') }}" />
 </head>
 
 <body>
@@ -30,10 +30,10 @@
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto card card-rounded">
             <div class="auth-form-light text-left py-5 px-4 px-sm-4">
-              <div class="brand-logo">
+              {{-- <div class="brand-logo">
                 <img src="{{ asset('images/logo.svg') }}" alt="logo">
-              </div>
-              <h4>Selamat Datang!</h4>
+              </div> --}}
+              <h4><strong>Selamat Datang!</strong></h4>
               <h6 class="fw-light">Daftar terlebih dahulu untuk melanjutkan ke sistem.</h6>
               <form class="pt-3" data-action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" id="form-register">
                 @csrf
@@ -71,7 +71,7 @@
                 <div class="my-2 d-flex justify-content-between align-items-center">
                 </div>
                 <div class="text-center mt-4 fw-light">
-                  Sudah memiliki akun? <a href="{{ route('login.index') }}" class="text-primary">Masuk</a>
+                  Sudah memiliki akun? <a href="{{ route('login') }}" class="text-primary">Masuk</a>
                 </div>
               </form>
             </div>
@@ -105,7 +105,7 @@
   <script src="{{ asset('js/todolist.js') }}"></script>
   <script src="{{ asset('js/ajax/post-register.js') }}"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js' integrity='sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==' crossorigin='anonymous'></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- endinject -->
 </body>
 

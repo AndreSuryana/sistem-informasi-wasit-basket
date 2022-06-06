@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function index()
     {
         return view('auth.login');
@@ -51,18 +55,5 @@ class LoginController extends Controller
 
         // Error handling
         return response()->json(['error' => 'Terjadi kesalahan pada server!'], 400);
-    }
-
-    public function logout(Request $request)
-    {
-        // Logout from auth session
-        Auth::logout();
-
-        // Clear session token
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        // Return
-        return response()->json(['success' => 'Logout berhasil!'], 200);
     }
 }

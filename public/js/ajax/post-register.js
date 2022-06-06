@@ -25,7 +25,6 @@ $(document).ready(function() {
         if (lastName.length == "") {
             return Swal.fire({
                 icon: 'warning',
-                type: 'warning',
                 title: 'Oops..',
                 text: 'Nama belakang tidak boleh kosong!'
             });
@@ -34,7 +33,6 @@ $(document).ready(function() {
         if (fullName.length == "") {
             return Swal.fire({
                 icon: 'warning',
-                type: 'warning',
                 title: 'Oops..',
                 text: 'Nama lengkap tidak boleh kosong!'
             });
@@ -43,7 +41,6 @@ $(document).ready(function() {
         if (email.length == "") {
             return Swal.fire({
                 icon: 'warning',
-                type: 'warning',
                 title: 'Oops..',
                 text: 'Email tidak boleh kosong!'
             });
@@ -52,7 +49,6 @@ $(document).ready(function() {
         if (password.length == "") {
             return Swal.fire({
                 icon: 'warning',
-                type: 'warning',
                 title: 'Oops..',
                 text: 'Password tidak boleh kosong!'
             });
@@ -61,7 +57,6 @@ $(document).ready(function() {
         if (password.length < 8) {
             return Swal.fire({
                 icon: 'warning',
-                type: 'warning',
                 title: 'Oops..',
                 text: 'Password tidak boleh kurang dari 8 karakter!'
             });
@@ -70,7 +65,6 @@ $(document).ready(function() {
         if (confirmPassword.length == "") {
             return Swal.fire({
                 icon: 'warning',
-                type: 'warning',
                 title: 'Oops..',
                 text: 'Konfirmasi password tidak boleh kosong!'
             });
@@ -79,7 +73,6 @@ $(document).ready(function() {
         if (confirmPassword.length < 8) {
             return Swal.fire({
                 icon: 'warning',
-                type: 'warning',
                 title: 'Oops..',
                 text: 'Konfirmasi password tidak boleh kurang dari 8 karakter!'
             });
@@ -94,7 +87,21 @@ $(document).ready(function() {
             });
         }
 
-        // TODO : Tambahin validasi 'must contains number'
+        if (!/\d/.test(password)) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'Oops..',
+                text: 'Password harus terdiri dari minimal 1 angka!'
+            });
+        }
+
+        if (!/\d/.test(password)) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'Oops..',
+                text: 'Konfirmasi password harus terdiri dari minimal 1 angka!'
+            });
+        }
 
         // Ajax: post-register
         $.ajaxSetup({
@@ -115,7 +122,7 @@ $(document).ready(function() {
                         title: 'Success!',
                         text: 'Akun berhasil terdaftar! Silahkan masuk untuk melanjutkan',
                     }).then(function(result) {
-                        window.location = '/login';
+                        return window.location = '/login';
                     });
                 } else {
                     return Swal.fire({
@@ -134,10 +141,11 @@ $(document).ready(function() {
             },
             statusCode: {
                 400: function(response) {
+                    console.log(response);
                     return Swal.fire({
                         icon: 'error',
                         title: 'Error!',
-                        text: 'Bad request!'
+                        text: response.responseJSON.error
                     });
                 },
                 500: function(response) {

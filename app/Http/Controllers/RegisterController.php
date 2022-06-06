@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function index()
     {
         return view('auth.register');
@@ -17,7 +22,6 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        // return dd($request);
         // Get request data
         $userData = [
             'first_name'    => $request->input('first_name'),
@@ -37,6 +41,13 @@ class RegisterController extends Controller
             return response()->json([
                 'error' => 'Email sudah terdaftar pada sistem'
             ], 400);
+        }
+
+        // Generate avatar url (from API)
+        if (!empty($userData['first_name']) && empty($user['last_name'])) {
+            $userData += [
+                'photo_path' => 'https://ui-avatars.com/api/?format=svg&name=' . $userData['first_name'] . "+" . $userData['last_name']
+            ];
         }
 
         // Create new user
