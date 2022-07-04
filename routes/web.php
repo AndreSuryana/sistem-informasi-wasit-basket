@@ -58,11 +58,23 @@ Route::get('referee', [RefereeController::class, 'index'])
     ->name('referee.index');
 Route::post('referee', [RefereeController::class, 'update'])
     ->name('referee.update');
+
+// Referee Event Routes
 Route::get('referee/event', [RefereeController::class, 'showEvent'])
     ->name('referee.event.index');
 Route::post('referee/event/store', [RefereeController::class, 'storeEvent'])
     ->name('referee.event.store');
-// Route::post('referee/event/{}/update')
+Route::post('referee/event/{event}/update', [RefereeController::class, 'updateEvent'])
+    ->name('referee.event.update');
+Route::post('referee/event/{event}/delete', [RefereeController::class, 'deleteEvent'])
+    ->name('referee.event.delete');
 
-Route::get('referee/licence', [RefereeController::class, 'showLicence'])
-    ->name('referee.licence.index');
+// Referee License Routes
+Route::get('referee/license', [RefereeController::class, 'showLicense'])
+    ->name('referee.license.index');
+Route::post('referee/license/store', [RefereeController::class, 'storeLicense'])
+    ->name('referee.license.store');
+Route::post('referee/license/{referee_license}/update', [RefereeController::class, 'updateLicense'])
+    ->name('referee.license.update');
+Route::post('referee/license/{referee_license}/delete', [RefereeController::class, 'deleteLicense'])
+    ->name('referee.license.delete');
