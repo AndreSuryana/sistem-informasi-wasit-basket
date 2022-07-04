@@ -19,6 +19,7 @@ class CreateRefereesTable extends Migration
             $table->foreignId('level_id');
             $table->foreignId('city_id');
             $table->string('document_path');
+            $table->string('verification_status')->default('pending');
             $table->boolean('verified_status')->default(false);
             $table->timestamps();
         });

@@ -54,5 +54,10 @@ Route::resource('users', UserController::class)
     ->scoped(['user' => 'email']);
 
 // Referee Routes
-Route::resource('referee', RefereeController::class);
-Route::resource('referee.event', RefereeController::class);
+Route::get('referee', [RefereeController::class, 'index'])
+    ->name('referee.index');
+Route::post('referee', [RefereeController::class, 'update'])
+    ->name('referee.update');
+
+// Referee Event Routes
+Route::resource('referees.event', RefereeController::class);

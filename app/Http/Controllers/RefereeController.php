@@ -2,83 +2,85 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Referee;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RefereeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');   
+    }
+
     /**
-     * Display a listing of the resource.
+     * Show form for editing the specified referee.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $data = [
+            'user'          => Auth::user(),
+            'title'         => 'Data Wasit - SiBasket',
+            'navbar_title'  => 'Data Wasit',
+            'cities'        => City::all(),
+        ];
+
+        return view('referee.index');
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the specified referee in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
-    }
+        // Get current user id
+        $userId = Auth::id();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        // Current user
+        $user = User::find($userId);
+
+        // Check if user already has referee data
+        $referee = Referee::where('user_id', '=', $userId)->firstOrFail();
+
+        // Check document upload
+        $document = $request->file('document');
+        if ($document) {
+            
+            $documentPath = $document;
+            $documentName = time() . '.' . $documentPath->getClientOriginalExtension();
+
+            // Store to storage
+            $path = $document->storeAs('uploads/referees/document', $documentName, 'public');
+
+            // Complete path
+            $completePath = env('APP_URL') . 'storage/' . $path;
+        }
+
+        if ($referee) {
+            // Update existsed referee data
+            $referee->update([
+                'level_id'  => $request->input('level_id'),
+                'city_id'   => $request->input('city_id'),
+                'document_path'  => $completePath
+            ]);
+        } else {
+            // Create new referee data
+
+
+            Referee::create([
+                'user_id'   => $userId,
+                'level_id'  => $request->input('level_id'),
+                'city_id'   => $request->input('city_id'),
+                'document_path'  => $completePath
+            ]);
+        }
     }
 }

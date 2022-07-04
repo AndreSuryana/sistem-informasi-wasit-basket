@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use SebastianBergmann\Environment\Console;
 
 class ProfileController extends Controller
 {
@@ -113,10 +110,11 @@ class ProfileController extends Controller
             $imageName = time() . '.' . $imagePath->getClientOriginalExtension();
 
             // Store to storage
-            $path = $request->file('photo')->storeAs('uploads', $imageName, 'public');
+            $path = $request->file('photo')->storeAs('uploads/users/images', $imageName, 'public');
 
             // Get current user
-            $user = Auth::user();
+            $userId = Auth::id();
+            $user = User::find($userId);
 
             // Update user photo path
             $user->photo_path = env('APP_URL') . 'storage/' . $path;
