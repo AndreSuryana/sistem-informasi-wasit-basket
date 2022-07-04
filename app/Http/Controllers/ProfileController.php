@@ -74,7 +74,8 @@ class ProfileController extends Controller
         }
     }
 
-    public function uploadPhoto(Request $request) {
+    public function uploadPhoto(Request $request)
+    {
         // Make sure user still login in session
         if (Auth::check() && $request->file('photo')) {
             // Get file and define new file info

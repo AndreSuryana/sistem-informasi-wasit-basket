@@ -23,7 +23,7 @@ class CreateRefereeEventsTable extends Migration
             $table->date('end_date');
             $table->string('position');
             $table->string('document_path')->nullable(true)->default(null);
-            $table->boolean('verified_status')->default(false);
+            $table->string('verified_status')->default('pending');
             $table->timestamps();
         });
     }

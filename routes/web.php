@@ -42,9 +42,9 @@ Route::get('dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
 // Profile Routes
-Route::get('profile', [ProfileController::class, 'index'])
+Route::get('profile/data', [ProfileController::class, 'index'])
     ->name('profile.index');
-Route::put('profile', [ProfileController::class, 'update'])
+Route::put('profile/data', [ProfileController::class, 'update'])
     ->name('profile.update');
 Route::post('profile', [ProfileController::class, 'uploadPhoto'])
     ->name('profile.photo');
@@ -54,27 +54,35 @@ Route::resource('users', UserController::class)
     ->scoped(['user' => 'email']);
 
 // Referee Routes
-Route::get('referee', [RefereeController::class, 'index'])
+Route::get('referee/data', [RefereeController::class, 'index'])
     ->name('referee.index');
 Route::post('referee', [RefereeController::class, 'update'])
     ->name('referee.update');
 
 // Referee Event Routes
-Route::get('referee/event', [RefereeController::class, 'showEvent'])
+Route::get('referee/event/data', [RefereeController::class, 'showFormEvent'])
     ->name('referee.event.index');
 Route::post('referee/event/store', [RefereeController::class, 'storeEvent'])
     ->name('referee.event.store');
-Route::post('referee/event/{event}/update', [RefereeController::class, 'updateEvent'])
+Route::post('referee/event/{id}/update', [RefereeController::class, 'updateEvent'])
     ->name('referee.event.update');
-Route::post('referee/event/{event}/delete', [RefereeController::class, 'deleteEvent'])
+Route::post('referee/event/{id}/delete', [RefereeController::class, 'deleteEvent'])
     ->name('referee.event.delete');
 
-// Referee License Routes
-Route::get('referee/license', [RefereeController::class, 'showLicense'])
-    ->name('referee.license.index');
-Route::post('referee/license/store', [RefereeController::class, 'storeLicense'])
-    ->name('referee.license.store');
-Route::post('referee/license/{referee_license}/update', [RefereeController::class, 'updateLicense'])
-    ->name('referee.license.update');
-Route::post('referee/license/{referee_license}/delete', [RefereeController::class, 'deleteLicense'])
+// Referee Event Games Routes
+Route::post('referee/event/{eventId}/game/store', [RefereeController::class, 'storeGame'])
+    ->name('referee.event.game.store');
+Route::post('referee/event/game/{id}/update', [RefereeController::class, 'updateGame'])
+    ->name('referee.event.game.update');
+Route::post('referee/event/game/{id}/delete', [RefereeController::class, 'deleteGame'])
+    ->name('referee.event.game.delete');
+
+// Referee Licence Routes
+Route::get('referee/licence/data', [RefereeController::class, 'showFormLicence'])
+    ->name('referee.licence.index');
+Route::post('referee/licence/store', [RefereeController::class, 'storeLicence'])
+    ->name('referee.licence.store');
+Route::post('referee/licence/{id}/update', [RefereeController::class, 'updateLicence'])
+    ->name('referee.licence.update');
+Route::post('referee/licence/{id}/delete', [RefereeController::class, 'deleteLicence'])
     ->name('referee.license.delete');

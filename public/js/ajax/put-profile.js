@@ -191,7 +191,7 @@ $(document).ready(function() {
                         title: 'Success!',
                         text: 'Data diri berhasil disimpan.',
                     }).then(function(result) {
-                        return window.location = '/profile';
+                        return window.location = '/profile/data';
                     });
                 } else {
                     return Swal.fire({

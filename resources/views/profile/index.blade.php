@@ -125,7 +125,7 @@
                             <div class="col-sm-12">
                               <label for="date_of_birth">Tanggal Lahir</label>
                               <div class="input-group">
-                                <input type="text" class="form-control form-control-lg" id="date_of_birth" name="date_of_birth" placeholder="dd/mm/yyyy" value="{{ format_date($user->date_of_birth, "d/m/Y") }}" />
+                                <input type="text" class="form-control form-control-lg" id="date_of_birth" name="date_of_birth" placeholder="dd/mm/yyyy" value="@if($user->date_of_birth != null) {{ format_date($user->date_of_birth, "d/m/Y") }} @endif" />
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                 <div class="input-group-append">
                                   <span class="input-group-text form-control-lg text-dark px-4"><i class="mdi mdi-calendar-today"></i></span>
