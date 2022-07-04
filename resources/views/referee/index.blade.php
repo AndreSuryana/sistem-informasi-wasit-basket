@@ -203,7 +203,7 @@
   <script src="{{ asset('js/file-upload.js') }}"></script>
   <script src="{{ asset('js/typeahead.js') }}"></script>
   <script src="{{ asset('js/select2.js') }}"></script>
-  <script src="{{ asset('js/ajax/put-profile.js') }}"></script>
+  <script src="{{ asset('js/ajax/post-referee.js') }}"></script>
   <script src="{{ asset('js/datepicker.js') }}"></script>
   <!-- End custom js for this page-->
 @endsection

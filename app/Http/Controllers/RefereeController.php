@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Level;
 use App\Models\Referee;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,9 +28,10 @@ class RefereeController extends Controller
             'title'         => 'Data Wasit - SiBasket',
             'navbar_title'  => 'Data Wasit',
             'cities'        => City::all(),
+            'levels'        => Level::all()
         ];
 
-        return view('referee.index');
+        return view('referee.index', $data);
     }
 
     /**
@@ -43,9 +45,6 @@ class RefereeController extends Controller
     {
         // Get current user id
         $userId = Auth::id();
-
-        // Current user
-        $user = User::find($userId);
 
         // Check if user already has referee data
         $referee = Referee::where('user_id', '=', $userId)->firstOrFail();
@@ -73,8 +72,6 @@ class RefereeController extends Controller
             ]);
         } else {
             // Create new referee data
-
-
             Referee::create([
                 'user_id'   => $userId,
                 'level_id'  => $request->input('level_id'),

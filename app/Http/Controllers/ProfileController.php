@@ -59,34 +59,6 @@ class ProfileController extends Controller
             'other_profession'  => $request->input('other_profession'),
         ];
 
-        // Carbon::createFromFormat('d/m/Y', $request->input('date_of_birth')),
-
-        // Store photo
-            // Create validator
-            // $validator = Validator::make($request->all(), $rules);
-
-            // if ($validator->fails()) {
-            //     return response()->json([
-            //         'error' => 'Foto harus berformat png/jpg/jpeg!',
-            //     ], 400);
-            // }
-
-        // Save photo and get path
-        // $photoPath = $request->file('photo');
-        // $photoName = $photoPath->getClientOriginalName();
-
-        // $path = $request->file('photo')->storeAs('uploads', $photoName, 'public');
-
-        // $userData += ['photo_path' => $path];
-        // } else {
-        //     // Update avatar url (from API)
-        //     if (!empty($userData['first_name']) && empty($user['last_name'])) {
-        //         $userData += [
-        //             'photo_path' => 'https://ui-avatars.com/api/?format=svg&name=' . $userData['first_name'] . "+" . $userData['last_name']
-        //         ];
-        //     }
-        // }
-
         // Update user
         $updated = User::find($userId)
             ->update($userData);

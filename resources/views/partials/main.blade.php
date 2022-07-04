@@ -110,6 +110,18 @@
                             <span class="menu-title">Edit Data Wasit</span>
                         </a>
                     </li>
+                    <li class="nav-item {{ Route::is('referee.event.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('referee.event.index') }}">
+                            <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                            <span class="menu-title">Data Event Wasit</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ Route::is('referee.licence.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('referee.licence.index') }}">
+                            <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                            <span class="menu-title">Data Lisensi Wasit</span>
+                        </a>
+                    </li>
             </nav>
             <!-- main-panel -->
             @yield('main-panel')

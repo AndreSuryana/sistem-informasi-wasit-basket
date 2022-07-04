@@ -58,6 +58,11 @@ Route::get('referee', [RefereeController::class, 'index'])
     ->name('referee.index');
 Route::post('referee', [RefereeController::class, 'update'])
     ->name('referee.update');
+Route::get('referee/event', [RefereeController::class, 'showEvent'])
+    ->name('referee.event.index');
+Route::post('referee/event/store', [RefereeController::class, 'storeEvent'])
+    ->name('referee.event.store');
+// Route::post('referee/event/{}/update')
 
-// Referee Event Routes
-Route::resource('referees.event', RefereeController::class);
+Route::get('referee/licence', [RefereeController::class, 'showLicence'])
+    ->name('referee.licence.index');
